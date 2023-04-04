@@ -52,9 +52,9 @@ const ForgetPassword = () => {
             <div
               className="cards text-white"
               style={{
-                backgroundColor: "#49dae3",
+                backgroundColor: "gray",
                 borderRadius: "1rem",
-                color: "black",
+                color: "white",
               }}
             >
               <div className="card-body p-5 ">
@@ -118,7 +118,7 @@ const ForgetPassword = () => {
                   Submit
                 </button>
                 <p className="mt-2">
-                  Login? <Link to={routes.authentication.login}>Login</Link>
+                  Login? <Link to={routes.authentication.login} className='text-white fw-bold'>Login</Link>
                 </p>
               </div>
             </div>

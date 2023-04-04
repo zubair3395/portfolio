@@ -3,7 +3,8 @@ import axios from 'axios';
 const initialState= {
     posts: [],
     users: [],
-    todos: []
+    todos: [],
+    isLoading: false,
 }
   const getPosts= createAsyncThunk("getPosts", async()=> {
     const response= await axios.get("https://jsonplaceholder.typicode.com/posts");
@@ -20,21 +21,39 @@ const initialState= {
 const jsonplaceholderSlice= createSlice({
     name: "jsonPlaceHolder",
     initialState,
-    reducers: { },
     extraReducers: (builder)=>{
-        // Posts
+        // Posts Event
+        builder.addCase(getPosts.pending, (state)=>{
+            state.isLoading= false
+        })
         builder.addCase(getPosts.fulfilled, (state, action)=>{
+            state.isLoading= true
             state.posts= action.payload
         })
-        // Users
-        builder.addCase(getUsers.fulfilled, (state, action)=>{
-            
+        builder.addCase(getPosts.rejected, (state)=>{
+            state.isLoading= false
+        })
+        // Users Event 
+        builder.addCase(getUsers.pending, (state)=>{
+            state.isLoading= false
+        })
+        builder.addCase(getUsers.fulfilled, (state, action)=>{ 
+            state.isLoading= true
             state.users= action.payload
         })
-        // Todos
+        builder.addCase(getUsers.rejected, (state)=>{
+            state.isLoading= false
+        })
+        // Todos Event
+        builder.addCase(getTodos.pending, (state)=>{
+            state.isLoading= false
+        })
         builder.addCase(getTodos.fulfilled, (state, action)=>{
-            console.log("action.payload: ", action.payload);
+           state.isLoading= true
             state.todos= action.payload
+        })
+        builder.addCase(getTodos.rejected, (state)=>{
+            state.isLoading= false
         })
     }
 })

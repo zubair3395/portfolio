@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {toast} from 'react-toastify'
 export const useForm = (validation) => {
   const [uniStd, setUniStd] = useState({
     universityName: "",
@@ -18,7 +19,6 @@ export const useForm = (validation) => {
     let isValid = true;
      let validate= validation(uniStd);
      setError(validate)
-        console.log("validate: ", validate)
       Object.keys(validate)?.forEach((keys) => {
         if (validate[keys]) {
           isValid = false;
@@ -26,7 +26,7 @@ export const useForm = (validation) => {
       })
 
       if(isValid) {
-        alert("Form Sucessfully Saved");
+        toast("Form Sucessfully Saved");
         uniStdArr.push(uniStd);
         setUniStd({
           id: "",

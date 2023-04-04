@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import { setupListeners } from "@reduxjs/toolkit/query";
 import authenticationSlice from "../slices/authenticationSlice";
 import jsonPlaceHolder from "../slices/jsonPlaceHolder";
 import shoppingSlice from "../slices/shoppingSlice";
@@ -14,6 +13,5 @@ export const store = configureStore({
     authentication: authenticationSlice,
     
     weatherSlice: weatherSlice,
-
   },
 });

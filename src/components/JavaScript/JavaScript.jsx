@@ -1,47 +1,35 @@
-import React, { useState } from "react";
-import Accordion from "react-bootstrap/Accordion";
-import { Link } from "react-router-dom";
-import routes from "../../config/routes";
-import javaScript from "../../constants/javaScript/javaScript";
-import Loader from "../common/Loader";
-
+import React, { useState } from 'react'
+import ArraysInJavaScript from './ArraysInJavaScript';
+import JavaScriptTopic from './JavaScriptTopic';
+import Button from '../common/Button';
 const JavaScript = () => {
-  const [javaScriptArr, setJavScriptArr] = useState(javaScript);
-  const handleAccordian = (index) => {
-    parseInt(index);
-    const tempArr = javaScriptArr;
-    tempArr[index].show = "block";
-    setJavScriptArr([...tempArr]);
-  };
+    const [subject, setSubject] = useState("javaScript");
+    const handlePage=(text)=>{
+         setSubject(text)
+    }
+
   return (
     <>
       <div className="container">
-        <h1>JavaScript</h1>
-        <strong>
-          Differnt Math functions are used in this:{" "}
-          <Link to={routes.projects.footBall}>Click Here</Link>{" "}
-        </strong>
-        <Accordion className="mt-3">
-          {javaScriptArr?.length ? (
-            javaScriptArr?.map((item) => {
-              return (
-                <Accordion.Item eventKey={item?.id}>
-                  <Accordion.Header onClick={() => handleAccordian(item?.id)}>
-                    {item?.title}
-                  </Accordion.Header>
-                  <Accordion.Body style={{ display: `${item?.show}` }}>
-                    {item?.description}
-                  </Accordion.Body>
-                </Accordion.Item>
-              );
-            })
-          ) : (
-            <Loader />
-          )}
-        </Accordion>
+      <div className="row mt-5 mb-4">
+          <div className="col-md">
+            <Button onClick={() => handlePage("javaScript")} value="JavaScript Method" />
+            {subject === "javaScript" && <hr className="w-25" />}
+          </div>
+          <div className="col-md">
+            <Button onClick={() => handlePage("arrayJavaScript")} value="Array method " />
+            {subject === "arrayJavaScript" && <hr className="w-25" />}
+          </div>
+        </div>
       </div>
+      {
+        subject=== "javaScript" && <JavaScriptTopic/>
+      }
+      {
+        subject=== "arrayJavaScript" && <ArraysInJavaScript/>
+      }
     </>
-  );
-};
+  )
+}
 
-export default JavaScript;
+export default JavaScript

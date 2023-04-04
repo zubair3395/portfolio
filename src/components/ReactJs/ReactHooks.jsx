@@ -37,6 +37,7 @@ const ReactHooks = () => {
           })
         ) : (
           <Loader />
+          
         )}
       </Accordion>
     </div>

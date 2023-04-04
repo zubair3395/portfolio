@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import '../../../style/calculator.css';
 import {calculatorData} from "../../../constants/calculatorDigits";
+import { toast } from "react-toastify";
 export default function Calculator() {
   const [isClicked, setIsClicked] = useState(false);
   const [values, setValues] = useState({
@@ -25,8 +26,7 @@ export default function Calculator() {
       tempRes = parseFloat(values.num1) - parseFloat(values.num2);
     } else if (operate === "/") {
       if (parseInt(values.num2) === 0) {
-        alert("Second number can't be zero"); 
-        window.location.reload();
+        toast("Second number can't be zero"); 
       } else {
         tempRes = parseFloat(values.num1) / parseFloat(values.num2);
       }
@@ -35,9 +35,9 @@ export default function Calculator() {
     } else {
       tempRes = 0;
     }
-    setValues({ ...values, num1: tempRes, num2: "" });
-    setIsClicked(false);
+    setValues({ ...values, num1: tempRes, num2: ""});
     setOperate("");
+    setIsClicked(false);
   };
   const handleClear = (e) => {
     e.preventDefault();
@@ -45,10 +45,10 @@ export default function Calculator() {
     setValues({ ...values, num1: tempArr });
   };
   const handleOperation = (e) => {
-    setOperate("");
+    console.log("operate: ", e.target.value)
     e.preventDefault();
-    setIsClicked(true);
     setOperate(e.target.value);
+    setIsClicked(true);
   };
   const handleCancel = (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ export default function Calculator() {
   };
   return (
     <div>
-      <div className="container2">
+      <div className="container2" style={{border: "1px solid green", width:" 500px", margin: "auto"}}>
         <form action="" name="calc" className="calculator">
           <input
             type="number"

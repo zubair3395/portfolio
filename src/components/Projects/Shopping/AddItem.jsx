@@ -9,17 +9,17 @@ import {
 import Loader from "../../common/Loader";
 import TotalPayment from "./TotalPayment";
 
-function AddItem() {
+const  AddItem= ()=> {
   const cartItem = useSelector((state) => state?.ShoppingStore?.data);
   const dispatch = useDispatch();
   const handleDelete = (element) => {
     dispatch(removeCart(element));
   };
-  const handleIncrement = (element) => {
-    dispatch(incrementQuantity(element));
+  const handleIncrement = (index) => {
+    dispatch(incrementQuantity(index));
   };
-  const handleDecrement = (element) => {
-    dispatch(decrementQuantity(element));
+  const handleDecrement = (index) => {
+    dispatch(decrementQuantity(index));
   };
   return (
     <>

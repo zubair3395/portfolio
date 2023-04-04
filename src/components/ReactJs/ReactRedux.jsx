@@ -36,6 +36,7 @@ const ReactRedux = () => {
           })
         ) : (
           <Loader />
+       
         )}
       </Accordion>
     </div>

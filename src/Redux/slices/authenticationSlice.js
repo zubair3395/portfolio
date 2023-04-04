@@ -18,7 +18,6 @@ const forgetPassword = createAsyncThunk("forgetPassword", async (payload) => {
 const authenticationSlice = createSlice({
   name: "authenticationSlice",
   initialState,
-  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getUserData.fulfilled, (state, action) => {
       state.userData = action.payload;

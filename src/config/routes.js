@@ -6,7 +6,15 @@ const routes = {
   authentication: {
     login: "/",
     signup: "/signup",
-    forgetPassword: "/forgetPassword"
+    forgetPassword: "/forgetPassword",
+  },
+
+  profile:{
+    about: "/profile/about",
+    contact: "/profile/contact",
+    profile: "/profile",
+    subject: "/profile/subject",
+    projects: "/profile/projects"
   },
 
   projects: {

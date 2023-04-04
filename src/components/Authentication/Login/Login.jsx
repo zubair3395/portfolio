@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -41,7 +41,7 @@ const Login = () => {
         } else if (userData?.password !== password) {
           toast("password is incorrect");
         } else {
-          localStorage.setItem("name", JSON.stringify(userData.name));
+          localStorage.setItem("name", userData?.name);
           navigate(routes?.default?.path);
         }
       } else {
@@ -58,9 +58,9 @@ const Login = () => {
             <div
               className="cards text-white"
               style={{
-                backgroundColor: "#49dae3",
+                backgroundColor: "gray",
                 borderRadius: "1rem",
-                color: "black",
+                color: "white",
               }}
             >
               <div className="card-body p-5 ">
@@ -104,7 +104,7 @@ const Login = () => {
                 </div>
                 <p>
                   Forget password?{" "}
-                  <Link to={routes.authentication.forgetPassword}>
+                  <Link to={routes?.authentication?.forgetPassword} className='fw-bold text-white'>
                     {" "}
                     Click Here{" "}
                   </Link>
@@ -122,7 +122,7 @@ const Login = () => {
                 </button>
                 <p>
                   Don't have an account?{" "}
-                  <Link to={routes?.authentication?.signup} className="fw-bold">
+                  <Link to={routes?.authentication?.signup} className="fw-bold text-white">
                     Sign Up
                   </Link>
                 </p>

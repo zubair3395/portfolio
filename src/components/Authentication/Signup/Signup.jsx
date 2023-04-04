@@ -33,31 +33,31 @@ const Signup = () => {
       }
     });
     const tempUser = existingUser.find(
-      (singleUser) => singleUser.email === user.email
+      (singleUser) => singleUser?.email === user?.email
     );
 
-    if (!tempUser) {
-      if (isvaild) {
+    if (isvaild) {
+      if (!tempUser) {
         disptach(setUserData(user))
 
         toast("Your data sucefully saved");
-        localStorage.setItem("name", JSON.stringify(user.name));
-        navigate(routes.default.path);
-      }
-    } else {
+        localStorage.setItem("name", JSON.stringify(user?.name));
+        navigate(routes?.default?.path);
+      } else {
       toast("email is already exist");
     }
+  }
   };
 
   return (
     <>
       <div className="container">
-        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100 mt-5">
           <div className="col-12 col-md-8 col-lg-6 col-xl-5 mt-3">
             <div
               className="cards text-white"
               style={{
-                backgroundColor: "#49dae3",
+                backgroundColor: "gray",
                 borderRadius: "1rem",
               }}
             >
@@ -65,7 +65,7 @@ const Signup = () => {
                 <h2 className="fw-bold mb-2 text-uppercase text-center">
                   SignUp
                 </h2>
-                <p className="text-white-50 text-center">
+                <p className="text-white text-center">
                   Please enter your Data!
                 </p>
 
@@ -78,7 +78,7 @@ const Signup = () => {
                     value={user.name}
                     onChange={handleChange}
                   />
-                  {error.name && <p className="text-danger">{error.name}</p>}
+                  {error.name && <p className="text-danger">{error?.name}</p>}
                 </div>
 
                 <div className="form-outline form-white mb-4">
@@ -92,7 +92,7 @@ const Signup = () => {
                     placeholder="Enter your Email"
                     onChange={handleChange}
                   />
-                  {error.email && <p className="text-danger">{error.email}</p>}
+                  {error.email && <p className="text-danger">{error?.email}</p>}
                 </div>
 
                 <div className="form-outline form-white mb-4">
@@ -124,7 +124,7 @@ const Signup = () => {
                 </button>
                 <p>
                   Already have an account?{" "}
-                  <Link to={routes.authentication.login} className=" fw-bold">
+                  <Link to={routes.authentication.login} className=" fw-bold text-white">
                     Sign In
                   </Link>
                 </p>

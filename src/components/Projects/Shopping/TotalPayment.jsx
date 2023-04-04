@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { checkout } from "../../../Redux/slices/shoppingSlice";
+import { toast } from "react-toastify";
 // import { checkout } from '../../../../Redux/countSlice'
 export default function TotalPayment() {
   const subTotal = useSelector((state) => state?.ShoppingStore?.totalPrice);
@@ -10,9 +11,9 @@ export default function TotalPayment() {
   const handleCheckout = () => {
     if (subTotal > 0) {
       dispatch(checkout());
-      alert("Your order Sucessfull");
+      toast("Your order Sucessfull");
     } else {
-      alert("Please order something");
+      toast("Please order something");
     }
   };
   return (

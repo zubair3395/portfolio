@@ -1,10 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Button from "../common/Button";
-import BasicTopics from "./BasicTopics";
-import ReactHooks from "./ReactHooks";
-import ReactRedux from "./ReactRedux";
-
+import Loader from "../common/Loader";
+const BasicTopics = lazy(() => import("./BasicTopics"));
+const ReactHooks = lazy(() => import("./ReactHooks"));
+const ReactRedux = lazy(() => import("./ReactRedux"));
 const ReactJs = () => {
   const [reactSubject, setReactSuject] = useState("react");
   const handlePage = (subject) => {
@@ -20,7 +20,7 @@ const ReactJs = () => {
           </div>
           <div className="col-md">
             <Button onClick={() => handlePage("redux")} value="React Redux" />
-            {reactSubject === "redux" && <hr className="w-25"/>}
+            {reactSubject === "redux" && <hr className="w-25" />}
           </div>
           <div className="col-md">
             <Button onClick={() => handlePage("hooks")} value="React Hooks" />
@@ -28,11 +28,23 @@ const ReactJs = () => {
           </div>
         </div>
 
-        {reactSubject === "react" && <BasicTopics />}
+        {reactSubject === "react" && (
+          <Suspense fallback={<Loader />}>
+            <BasicTopics />
+          </Suspense>
+        )}
 
-        {reactSubject === "hooks" && <ReactHooks />}
+        {reactSubject === "hooks" && (
+          <Suspense fallback={<Loader />}>
+            <ReactHooks />
+          </Suspense>
+        )}
 
-        {reactSubject === "redux" && <ReactRedux />}
+        {reactSubject === "redux" && (
+          <Suspense fallback={<Loader />}>
+            <ReactRedux />
+          </Suspense>
+        )}
       </div>
     </>
   );

@@ -6,13 +6,15 @@ import Loader from "../../common/Loader";
 const UserApi = () => {
   const disptach= useDispatch();
   const user= useSelector(state=> state?.jsonPlaceHolder?.users);
+  const isLoading =  useSelector(state=> state?.jsonPlaceHolder?.isLoading);
+  console.log("loading users: ", isLoading)
   useEffect(()=>{
     disptach(getUsers())
   },[])
   return (
     <div className="text-center mt-4">
       {
-        user? user?.map(item=> <p>{item.name}</p>)
+        isLoading ? user?.map(item=> <p>{item.name}</p>)
         :
         <Loader/>
       }

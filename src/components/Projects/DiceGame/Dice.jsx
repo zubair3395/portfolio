@@ -9,9 +9,9 @@ const Dice = () => {
     let tempdice1 = Math.floor(Math.random() * 6);
     let tempdice2 = Math.floor(Math.random() * 6);
     if (tempdice1 > 0 && tempdice2 > 0) {
-      setTotal(tempdice1 + tempdice2);
       setDice1(tempdice1);
       setDice2(tempdice2);
+      setTotal(tempdice1 + tempdice2);
     }
   };
 
@@ -24,6 +24,8 @@ const Dice = () => {
         alignItems: "center",
         flexDirection: "column",
         padding: "20px",
+        width: "500px",
+        margin: "50px auto"
       }}
     >
       <h1>Dice Game</h1>

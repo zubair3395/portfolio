@@ -1,106 +1,98 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Route } from "react-router-dom";
 import routes from "../config/routes";
-import appDetail from "../constants/appDetail";
-import portfolio from "../assests/images/portfolio.png";
 import Dropdown from "../components/common/Dropdown";
 
 const Navbar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-info">
-        <div className="container-fluid">
-          <Link className="navbar-brand" to={routes.default.path}>
-            <img
-              src={portfolio}
-              alt=""
-              style={{ width: "150px", height: "50px" }}
-            />
+      <nav
+        className="navbar navbar-expand-lg bg-secondary text-uppercase"
+        id="mainNav"
+      >
+        <div className="container">
+          <Link className="navbar-brand" to="/home">
+            My Portfolio
           </Link>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
+          <select
+            className="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+            type="button"
+          >
+            <option value="">
               <Link
-                className="nav-link active mx-5"
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "600",
-                  fontFamily: "sans-serif",
-                }}
-                to={routes.projects.appDetail}
+                className="nav-link py-3 px-0 px-lg-3 rounded"
+                to={routes.profile.subject}
               >
-                {appDetail.length} Projects
+                Subjects
               </Link>
-
+            </option>
+            <option value="">
               <Link
-                className="nav-link dropdown active mx-3"
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "600",
-                  fontFamily: "sans-serif",
-                }}
+                className="nav-link py-3 px-0 px-lg-3 rounded"
+                to={routes.profile.about}
               >
-                <div
-                  className=" dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                About
+              </Link>
+            </option>
+            <option value="">
+              <Link
+                className="nav-link py-3 px-0 px-lg-3 rounded"
+                to={routes.profile.projects}
+              >
+                Projects
+              </Link>
+            </option>
+            <option value="">
+              <Link
+                className="nav-link py-3 px-0 px-lg-3 rounded"
+                to={routes.profile.contact}
+              >
+                Contact
+              </Link>
+            </option>
+          </select>
+          <div className="collapse navbar-collapse">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  className="nav-link py-3 px-0 px-lg-3 rounded"
+                  to={routes.profile.subject}
                 >
-                  JavaScript
-                </div>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to={routes.subjects.javaScript}
-                      style={{
-                        fontSize: "20px",
-                        fontWeight: "600",
-                        fontFamily: "sans-serif",
-                      }}
-                    >
-                      JavaScript
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="dropdown-item"
-                      to={routes.subjects.arrayJavaScript}
-                      style={{
-                        fontSize: "20px",
-                        fontWeight: "600",
-                        fontFamily: "sans-serif",
-                      }}
-                    >
-                      Array JavaScript
-                    </Link>
-                  </li>
-                </ul>
-              </Link>
-              <Link
-                className="nav-link active mx-3"
-                to={routes.subjects.html}
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "600",
-                  fontFamily: "sans-serif",
-                }}
-              >
-                HTML
-              </Link>
-              <Link
-                className="nav-link active mx-3"
-                to={routes.subjects.reactjs}
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "600",
-                  fontFamily: "sans-serif",
-                }}
-              >
-                React js
-              </Link>
-            </div>
+                  Subjects
+                </Link>
+              </li>
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  className="nav-link py-3 px-0 px-lg-3 rounded"
+                  to={routes.profile.projects}
+                >
+                  Projects
+                </Link>
+              </li>
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  className="nav-link py-3 px-0 px-lg-3 rounded"
+                  to={routes.profile.about}
+                >
+                  About
+                </Link>
+              </li>
+              <li className="nav-item mx-0 mx-lg-1">
+                <Link
+                  className="nav-link py-3 px-0 px-lg-3 rounded"
+                  to={routes.profile.contact}
+                >
+                  Contact
+                </Link>
+              </li>
+              <li className="nav-item mx-0 mx-lg-1">
+                <p className=" mt-2 px-0 px-lg-3 rounded">
+                  <Dropdown />
+                </p>
+              </li>
+            </ul>
           </div>
         </div>
-        <Dropdown/>
       </nav>
     </>
   );

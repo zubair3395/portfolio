@@ -5,14 +5,15 @@ import Loader from "../../common/Loader";
 const TodoApi = () => {
   const dispatch= useDispatch();
    const todos= useSelector(state=> state?.jsonPlaceHolder?.todos);
-
+   const isLoading =  useSelector(state=> state?.jsonPlaceHolder?.isLoading);
+   console.log("loading tosdo: ", isLoading)
    useEffect(()=>{
     dispatch(getTodos())
    },[]);
   return (
     <div className="text-center mt-4">
       {
-        todos? todos?.map(item=> <p>{item.title}</p>)
+        isLoading ? todos?.map(item=> <p>{item?.title}</p>)
         :
         <Loader/>
       }

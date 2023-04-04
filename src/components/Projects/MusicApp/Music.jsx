@@ -4,8 +4,8 @@ import background from "../../../assests/images/background.jpeg";
 import "../../../style/music.css";
 const Music = () => {
   const myAudio = useRef();
-  const [currentIndex, setCurrentIndex] = useState(0); //setCurrentIndex
-  const [isPlaying, setisPlaying] = useState(false); //isPlayinging
+  const [currentIndex, setCurrentIndex] = useState(0); 
+  const [isPlaying, setisPlaying] = useState(false); 
   const handleNextSong = () => {
     if (currentIndex >= songs?.length - 1) {
       setCurrentIndex(0);

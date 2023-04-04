@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchApi } from "../../api/api";
 
-const getCollection= createAsyncThunk("getCollection", async()=>{
-   const response= await fetchApi.shopping.shoppingData();
-     return response.data;
-})
+const getCollection = createAsyncThunk("getCollection", async () => {
+  const response = await fetchApi.shopping.shoppingData();
+  return response.data;
+});
+
 export const shoppingSlice = createSlice({
   name: "ShoppingStore",
   initialState: {
@@ -16,6 +17,7 @@ export const shoppingSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
+      console.log({ action });
       const res = state.data.find((post) => post.id === action.payload.id);
       if (!res) {
         state.data = [...state.data, action.payload];
@@ -23,8 +25,7 @@ export const shoppingSlice = createSlice({
       }
     },
     removeCart: (state, action) => {
-      const itemId = action.payload.id;
-      state.data = state.data.filter((items) => items.id !== itemId);
+      state.data = state.data.filter((items) => items.id !== action.payload.id);
       state.totalPrice =
         state.totalPrice - action.payload.price * action.payload.quantity;
     },
@@ -43,11 +44,11 @@ export const shoppingSlice = createSlice({
       state.totalPrice = 0;
     },
   },
-  extraReducers: (builder)=>{
-    builder.addCase(getCollection.fulfilled, (state, action)=>{
-        state.collection= action.payload;
-    })
-  }
+  extraReducers: (builder) => {
+    builder.addCase(getCollection.fulfilled, (state, action) => {
+      state.collection = action.payload;
+    });
+  },
 });
 
 export const {
@@ -59,4 +60,5 @@ export const {
 } = shoppingSlice.actions;
 
 export default shoppingSlice.reducer;
-export {getCollection}
+
+export { getCollection };
