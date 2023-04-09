@@ -31,11 +31,11 @@ const Dice = () => {
       <h1>Dice Game</h1>
       <div className="mt-5">
         <i
-          class={`mx-5 bi bi-dice-${dice1}`}
+          className={`mx-5 bi bi-dice-${dice1}`}
           style={{ color: "yellow", fontSize: "100px" }}
         ></i>
         <i
-          class={`mx-5 bi bi-dice-${dice2}`}
+          className={`mx-5 bi bi-dice-${dice2}`}
           style={{ color: "green", fontSize: "100px" }}
         ></i>
       </div>
