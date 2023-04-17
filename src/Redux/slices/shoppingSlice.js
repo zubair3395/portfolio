@@ -1,6 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchApi } from "../../api/api";
-
+const initialState = {
+  value: 0,
+  collection: [],
+  data: [],
+  totalPrice: 0,
+  subPrice: 0,
+};
 const getCollection = createAsyncThunk("getCollection", async () => {
   const response = await fetchApi.shopping.shoppingData();
   return response.data;
@@ -8,13 +14,7 @@ const getCollection = createAsyncThunk("getCollection", async () => {
 
 export const shoppingSlice = createSlice({
   name: "ShoppingStore",
-  initialState: {
-    value: 0,
-    collection: [],
-    data: [],
-    totalPrice: 0,
-    subPrice: 0,
-  },
+  initialState,
   reducers: {
     addToCart: (state, action) => {
       console.log({ action });

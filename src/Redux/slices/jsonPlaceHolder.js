@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from 'axios';
+import { fetchApi } from "../../api/api";
 const initialState= {
     posts: [],
     users: [],
@@ -7,15 +7,15 @@ const initialState= {
     isLoading: false,
 }
   const getPosts= createAsyncThunk("getPosts", async()=> {
-    const response= await axios.get("https://jsonplaceholder.typicode.com/posts");
+    const response= await fetchApi.json.postsGetData();
        return response.data
   })
   const getUsers= createAsyncThunk("getUsers", async()=> {
-    const response= await axios.get("https://jsonplaceholder.typicode.com/users");
+    const response= await fetchApi.json.usersGetData();
        return response.data
   })
   const getTodos= createAsyncThunk("getTodos", async()=> {
-    const response= await axios.get("https://jsonplaceholder.typicode.com/todos");
+    const response= await fetchApi.json.todosGetData();
        return response.data
   })
 const jsonplaceholderSlice= createSlice({
